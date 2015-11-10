@@ -26,6 +26,6 @@ public class TestLabyrinthGame
 		blockPositions.add(new Position(3,2));
 		blockPositions.add(new Position(3,3));
 		
-		new LabyrinthGame(new Labyrinth(4, 4, blockPositions, new Position(3,1)), new LesserDumbBotArtificialIntelligence()).play();
+		new LabyrinthGame(new Labyrinth(4, 4, blockPositions, new Position(3,1)), RobotArtificialIntelligence.createRobot(args[0])).play();
 	}
 }
