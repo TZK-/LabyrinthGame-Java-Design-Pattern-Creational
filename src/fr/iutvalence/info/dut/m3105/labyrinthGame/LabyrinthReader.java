@@ -40,7 +40,6 @@ public class LabyrinthReader {
 						break;
 				}
 			}
-			
 		}
 		
 		labyrinthBuilder.setHeight(height);
