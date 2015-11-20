@@ -6,46 +6,21 @@ import java.io.Reader;
 
 public class LabyrinthReader {
 
-	public static Labyrinth readLabyrinth(Reader reader) throws IOException {
+	public static Labyrinth readLabyrinth(Reader reader){
 		LabyrinthBuilder labyrinthBuilder = new ConcreteLabyrinthBuilder();
-
-		BufferedReader bufferedReader = new BufferedReader(reader);
-
-		String currentLine;
-		StringBuilder lines = new StringBuilder();
-		Integer height = 0;
-		Integer width = null;
 		
-		while ((currentLine = bufferedReader.readLine()) != null) {
-			height++;
-			if (width == null)
-				width = currentLine.length();
-			lines.append(currentLine);
-		}
-
-		bufferedReader.close();
+		BufferedReader br = new BufferedReader(reader);
 		
-		for (int row = 0; row < height; row++) {
-			for (int col = 0; col < width; col++) {
+		String line;
+		try {
+			while((line = br.readLine()) != null){
 				
-				char currentChar = lines.charAt(row * width + col);
-				switch(currentChar){
-					case 'X':
-						labyrinthBuilder.addForbiddenCellsPositions(new Position(row, col));
-						break;
-					case 'S':
-						labyrinthBuilder.setExitPosition(new Position(row, col));
-						break;
-					default:
-						break;
-				}
 			}
-			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		labyrinthBuilder.setHeight(height);
-		labyrinthBuilder.setWidth(width);
-
 		return labyrinthBuilder.getLabyrinth();
 	}
 }
